@@ -73,7 +73,7 @@ function App() {
   }
 
   function contarAzul3() {
-    setVermelho((prevAzul) => prevAzul + 3);
+    setAzul((prevAzul) => prevAzul + 3);
   }
 
   function zerarPontos() {
