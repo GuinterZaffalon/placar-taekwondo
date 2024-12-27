@@ -12,6 +12,12 @@ function App() {
       case 'u':
         contarAzul2();
         break;
+      case 'w':
+        contarVermelho3();
+        break;
+      case 'i':
+        contarAzul3();
+        break;
       case 'n':
         zerarPontos();
         break;
