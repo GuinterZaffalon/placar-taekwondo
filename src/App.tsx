@@ -80,11 +80,11 @@ function App() {
     setVermelho(0);
     setAzul(0);
   }
-  
+
   return (
     <div className="w-full h-screen">
-      <h1 className="text-center text-lg">
-        {gamepadConnected ? "Gamepad conectado!" : "Conecte um gamepad."}
+      <h1 className={`text-center text-lg" ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
+        {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
       </h1>
       <div className="flex-row flex h-full w-full">
         <div className="bg-red-600 w-1/2 h-full justify-center items-center flex-col flex">
