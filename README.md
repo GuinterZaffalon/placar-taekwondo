@@ -13,6 +13,13 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [ ] Faltas
 - [ ] Escolha do tempo
 
+## 🎮 Gamepad Input
+
+É seguido essa definicão de controle: 
+https://w3c.github.io/gamepad/standard_gamepad.svg
+
+Segue a documentacão: https://w3c.github.io/gamepad/#gamepadbutton-interface
+
 ## 📫 Contribuindo para <placar-taekwondo>
 
 Para contribuir com <placar-taekwondo>, siga estas etapas:
