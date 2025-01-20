@@ -4,6 +4,7 @@ function App() {
   const [vermelho, setVermelho] = useState(0);
   const [azul, setAzul] = useState(0);
   const [gamepadConnected, setGamepadConnected] = useState(false);
+  const [timer, setTimer] = useState(0);
 
   const handleGamepadInput = () => {
     const gamepads = navigator.getGamepads();
@@ -82,22 +83,24 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen">
-      <h1 className={`text-center text-lg" ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
+    <div className="w-full h-screen relative">
+      <h1 className={`text-center text-lg ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
         {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
       </h1>
-      <div className="flex-row flex h-full w-full">
-        <div className="bg-red-600 w-1/2 h-full justify-center items-center flex-col flex">
+      <div className="flex h-full w-full">
+        <div className="bg-red-600 w-1/2 h-full justify-center items-center flex flex-col">
           <span className="text-9xl">{vermelho}</span>
         </div>
-        <div className="bg-blue-600 w-1/2 h-full justify-center items-center flex-col flex">
-          <div>
+        <div className="bg-blue-600 w-1/2 h-full justify-center items-center flex flex-col">
           <span className="text-9xl">{azul}</span>
-          </div>
         </div>
+      </div>
+      <div className="bg-black w-96 h-56 absolute bottom-0 left-1/2 transform -translate-x-1/2">
+        
       </div>
     </div>
   );
+  
 }
 
 export default App;
