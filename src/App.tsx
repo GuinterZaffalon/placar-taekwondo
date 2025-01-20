@@ -19,11 +19,11 @@ function App() {
         contarAzul2();
       }
 
-      if(gamepad.buttons[2].pressed) {
+      if (gamepad.buttons[2].pressed) {
         contarVermelho3();
       }
 
-      if(gamepad.buttons[3].pressed) {
+      if (gamepad.buttons[3].pressed) {
         contarAzul3();
       }
 
@@ -51,7 +51,7 @@ function App() {
       if (gamepadConnected) {
         handleGamepadInput();
       }
-    }, 120);
+    }, 160);
 
     return () => {
       window.removeEventListener("gamepadconnected", gamepadListener);
@@ -65,7 +65,7 @@ function App() {
   }
 
   function contarAzul2() {
-    setAzul((prevAzul) => prevAzul + 2); 
+    setAzul((prevAzul) => prevAzul + 2);
   }
 
   function contarVermelho3() {
@@ -80,27 +80,24 @@ function App() {
     setVermelho(0);
     setAzul(0);
   }
-
+  
   return (
     <div className="w-full h-screen">
       <h1 className="text-center text-lg">
         {gamepadConnected ? "Gamepad conectado!" : "Conecte um gamepad."}
       </h1>
-      <div className="w-full h-full grid grid-cols-2">
-        <div className="bg-red-600 w-full grid col-span-1">
-          <div className="justify-center items-center flex-col flex">
+      <div className="flex-row flex h-full w-full">
+        <div className="bg-red-600 w-1/2 h-full justify-center items-center flex-col flex">
           <span className="text-9xl">{vermelho}</span>
-          </div>
         </div>
-        <div className="bg-blue-600 w-full col-span-1  grid">
-          <div className="justify-center items-center flex-col flex">
+        <div className="bg-blue-600 w-1/2 h-full justify-center items-center flex-col flex">
+          <div>
           <span className="text-9xl">{azul}</span>
           </div>
         </div>
       </div>
-
     </div>
-  )
+  );
 }
 
 export default App;
