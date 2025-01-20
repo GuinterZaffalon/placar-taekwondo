@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
+import Countdown from "./components/countdown";
 
 function App() {
   const [vermelho, setVermelho] = useState(0);
   const [azul, setAzul] = useState(0);
   const [gamepadConnected, setGamepadConnected] = useState(false);
-  const [seconds, SetSeconds] = useState(0);
-  const [minutes, SetMinutes] = useState(0);
+  const [timer, SetTimer] = useState(0);
 
   const handleGamepadInput = () => {
     const gamepads = navigator.getGamepads();
@@ -100,9 +100,7 @@ function App() {
           <span className="text-9xl">{azul}</span>
         </div>
       </div>
-      <div className="bg-black w-96 h-56 absolute bottom-0 left-1/2 transform -translate-x-1/2">
-        
-      </div>
+      <Countdown seconds = {95}/>
     </div>
   );
   
