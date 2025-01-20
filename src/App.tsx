@@ -4,7 +4,8 @@ function App() {
   const [vermelho, setVermelho] = useState(0);
   const [azul, setAzul] = useState(0);
   const [gamepadConnected, setGamepadConnected] = useState(false);
-  const [timer, setTimer] = useState(0);
+  const [seconds, SetSeconds] = useState(0);
+  const [minutes, SetMinutes] = useState(0);
 
   const handleGamepadInput = () => {
     const gamepads = navigator.getGamepads();
@@ -81,6 +82,10 @@ function App() {
     setVermelho(0);
     setAzul(0);
   }
+
+  useEffect(() => {
+
+  });
 
   return (
     <div className="w-full h-screen relative">
