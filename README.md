@@ -1,17 +1,17 @@
-# Placar Taekwond
+# Placar Taekwondo
 
 > Placar com conexão para gamepad, fazendo a contagem de pontos pelo mesmo!
-> Uma software da comunidade para a comunidade.
+> Um software da comunidade para a comunidade.
 
 ## 📌 Desenvolvimento
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
 
-- [x] Adicionar livros ao banco de dados
-- [x] Integração para download das capas
-- [x] Exibir detalhes dos livros
-- [ ] Filtro por data de leitura
-- [ ] Páginas lidas / restantes
+- [x] Estutura de pontos
+- [x] Conexão com gamepad
+- [ ] Cronometro do Round
+- [ ] Faltas
+- [ ] Escolha do tempo
 
 ## 📫 Contribuindo para <placar-taekwondo>
 
