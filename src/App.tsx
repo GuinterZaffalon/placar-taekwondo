@@ -45,10 +45,6 @@ function App() {
     handleOpen();
   }, []);
 
-  // useEffect(() => {
-  //   SetTimer();
-  // }, [selectTime]);
-
   const gamepadListener = (e: GamepadEvent) => {
     if (e.type === "gamepadconnected") {
       setGamepadConnected(true);
@@ -138,7 +134,7 @@ function App() {
         </Box>
       </Modal>
       <div className="w-full h-screen relative">
-        <h1 className={`text-center text-lg ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
+        <h1 className={`text-center text-lg fic${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
           {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
         </h1>
         <div className="flex h-full w-full">
