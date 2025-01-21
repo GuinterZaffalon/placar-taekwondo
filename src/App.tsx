@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react"
 import Countdown from "./components/countdown";
+import { Box, Button, Modal } from "@mui/material";
 
 function App() {
   const [vermelho, setVermelho] = useState(0);
   const [azul, setAzul] = useState(0);
   const [gamepadConnected, setGamepadConnected] = useState(false);
   const [timer, SetTimer] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
 
   const handleGamepadInput = () => {
     const gamepads = navigator.getGamepads();
@@ -34,6 +39,10 @@ function App() {
       }
     }
   };
+
+  useEffect(() => {
+    handleOpen();
+  }, []);
 
   const gamepadListener = (e: GamepadEvent) => {
     if (e.type === "gamepadconnected") {
@@ -83,11 +92,42 @@ function App() {
     setAzul(0);
   }
 
-  useEffect(() => {
+  function handleTimer(id: number) {
+    // if (id === 1) {
+    //   SetTimer(30);
+    // }
+    // if (id === 2) {
+    //   SetTimer(60);
+    // }
+    // if (id === 3) {
+    //   SetTimer(90);
+    // }
+    id === 1 ? SetTimer(30) : (id === 2 ? SetTimer(60) : SetTimer(90));
+    handleClose();
+  }
 
-  });
 
   return (
+    <>
+    <Modal
+    open={openModal}
+    onClose={handleClose}
+    className="flex justify-center items-center bg-black bg-opacity-50"
+    
+    >
+      <Box className="flex-col absolute gap-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-md rounded-md p-5 bg-white items-center flex">
+        <h1 className="text-4xl pb-2">Seja bem vindo ao Placar Taekwondo!</h1>
+        <span className="text-xl">Selecione abaixo o tempo do round!</span>
+        <select name="time" id="timeRound">
+          <option value="1">30 segundos</option>
+          <option value="2">1 minuto</option>
+          <option value="3">1 minuto e 30 segundos</option>
+        </select>
+        <Button variant="contained" color="success" className="h-1/2 w-1/2"
+        onClick={() => handleTimer(Number(document.getElementById("timeRound")?.value))}
+        >Iniciar</Button>
+      </Box>
+    </Modal>
     <div className="w-full h-screen relative">
       <h1 className={`text-center text-lg ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
         {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
@@ -100,10 +140,10 @@ function App() {
           <span className="text-9xl">{azul}</span>
         </div>
       </div>
-      <Countdown seconds = {95}/>
+      <Countdown seconds = {timer}/>
     </div>
+    </>
   );
-  
 }
 
 export default App;
