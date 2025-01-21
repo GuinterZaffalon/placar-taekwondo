@@ -19,6 +19,7 @@ export default function Countdown({ seconds }: CountdownProps) {
   const timerId = useRef(0)
 
   useEffect(() => {
+    setCountdown(seconds)
     timerId.current = setInterval(() => {
       setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
@@ -28,7 +29,7 @@ export default function Countdown({ seconds }: CountdownProps) {
         clearInterval(timerId.current);
       }
     };
-  }, []);
+  }, [seconds]);
 
   useEffect(() => {
     if (countdown === 0 && timerId.current) {

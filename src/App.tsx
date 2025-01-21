@@ -10,6 +10,7 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
+  const [selectTime, setSelectedTime] = useState("1");
 
 
   const handleGamepadInput = () => {
@@ -43,6 +44,10 @@ function App() {
   useEffect(() => {
     handleOpen();
   }, []);
+
+  // useEffect(() => {
+  //   SetTimer();
+  // }, [selectTime]);
 
   const gamepadListener = (e: GamepadEvent) => {
     if (e.type === "gamepadconnected") {
@@ -92,56 +97,60 @@ function App() {
     setAzul(0);
   }
 
-  function handleTimer(id: number) {
-    // if (id === 1) {
-    //   SetTimer(30);
-    // }
-    // if (id === 2) {
-    //   SetTimer(60);
-    // }
-    // if (id === 3) {
-    //   SetTimer(90);
-    // }
-    id === 1 ? SetTimer(30) : (id === 2 ? SetTimer(60) : SetTimer(90));
+  function handleTimer() {
+    switch (selectTime) {
+      case "1":
+        SetTimer(30);
+        break;
+      case "2":
+        SetTimer(60);
+        break;
+      case "3":
+        SetTimer(90);
+        break;
+    }
     handleClose();
   }
 
-
   return (
     <>
-    <Modal
-    open={openModal}
-    onClose={handleClose}
-    className="flex justify-center items-center bg-black bg-opacity-50"
-    
-    >
-      <Box className="flex-col absolute gap-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-md rounded-md p-5 bg-white items-center flex">
-        <h1 className="text-4xl pb-2">Seja bem vindo ao Placar Taekwondo!</h1>
-        <span className="text-xl">Selecione abaixo o tempo do round!</span>
-        <select name="time" id="timeRound">
-          <option value="1">30 segundos</option>
-          <option value="2">1 minuto</option>
-          <option value="3">1 minuto e 30 segundos</option>
-        </select>
-        <Button variant="contained" color="success" className="h-1/2 w-1/2"
-        onClick={() => handleTimer(Number(document.getElementById("timeRound")?.value))}
-        >Iniciar</Button>
-      </Box>
-    </Modal>
-    <div className="w-full h-screen relative">
-      <h1 className={`text-center text-lg ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
-        {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
-      </h1>
-      <div className="flex h-full w-full">
-        <div className="bg-red-600 w-1/2 h-full justify-center items-center flex flex-col">
-          <span className="text-9xl">{vermelho}</span>
+      <Modal
+        open={openModal}
+        onClose={handleClose}
+        className="flex justify-center items-center bg-black bg-opacity-50"
+      >
+        <Box className="flex-col absolute gap-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-md rounded-md p-5 bg-white items-center flex">
+          <h1 className="text-4xl pb-2">Seja bem vindo ao Placar Taekwondo!</h1>
+          <span className="text-xl">Selecione abaixo o tempo do round!</span>
+          <select
+            name="time"
+            id="timeRound"
+            value={selectTime}
+            onChange={(e) => setSelectedTime(e.target.value)}
+          >
+            <option value="1">30 segundos</option>
+            <option value="2">1 minuto</option>
+            <option value="3">1 minuto e 30 segundos</option>
+          </select>
+          <Button variant="contained" color="success" className="h-1/2 w-1/2"
+            onClick={handleTimer}
+          >Iniciar</Button>
+        </Box>
+      </Modal>
+      <div className="w-full h-screen relative">
+        <h1 className={`text-center text-lg ${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
+          {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
+        </h1>
+        <div className="flex h-full w-full">
+          <div className="bg-red-600 w-1/2 h-full justify-center items-center flex flex-col">
+            <span className="text-9xl">{vermelho}</span>
+          </div>
+          <div className="bg-blue-600 w-1/2 h-full justify-center items-center flex flex-col">
+            <span className="text-9xl">{azul}</span>
+          </div>
         </div>
-        <div className="bg-blue-600 w-1/2 h-full justify-center items-center flex flex-col">
-          <span className="text-9xl">{azul}</span>
-        </div>
+        <Countdown seconds={timer} />
       </div>
-      <Countdown seconds = {timer}/>
-    </div>
     </>
   );
 }
