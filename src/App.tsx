@@ -134,9 +134,13 @@ function App() {
         </Box>
       </Modal>
       <div className="w-full h-screen relative">
-        <h1 className={`text-center text-lg fic${gamepadConnected ? "bg-green-600" : "bg-white"}`}>
+        <h1
+          className={`text-center border text-lg ${gamepadConnected ? "bg-green-600 text-white" : "bg-white text-black"
+            }`}
+        >
           {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
         </h1>
+
         <div className="flex h-full w-full">
           <div className="bg-red-600 w-1/2 h-full justify-center items-center flex flex-col">
             <span className="text-9xl">{vermelho}</span>
