@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Countdown from "./components/countdown";
 import { Box, Button, Modal } from "@mui/material";
+import Win from "./components/win";
 
 function App() {
   const [vermelho, setVermelho] = useState(0);
@@ -8,10 +9,12 @@ function App() {
   const [gamepadConnected, setGamepadConnected] = useState(false);
   const [timer, SetTimer] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  const [openModalWin, setOpenModalWin] = useState(false);
+  const handleOpenWin = () => setOpenModalWin(true);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
   const [selectTime, setSelectedTime] = useState("1");
-
+  const [vencedor, setVencedor] = useState("");
 
   const handleGamepadInput = () => {
     const gamepads = navigator.getGamepads();
@@ -45,6 +48,12 @@ function App() {
     handleOpen();
   }, []);
 
+  useEffect(() => {
+    if (timer === 0) {
+      handleOpenWin();
+    }
+  }, [timer]);
+
   const gamepadListener = (e: GamepadEvent) => {
     if (e.type === "gamepadconnected") {
       setGamepadConnected(true);
@@ -54,6 +63,17 @@ function App() {
       console.log("Gamepad desconectado:", e.gamepad.id);
     }
   };
+
+  useEffect(() => {
+    if (vermelho > azul + 12) {
+      setVencedor("vermelho");
+     handleOpenWin();
+    } else if (azul > vermelho + 12) {
+      setVencedor("azul");
+      handleOpenWin();
+    }
+  }, [vermelho, azul]); // Dependências corretas
+
 
   useEffect(() => {
     window.addEventListener("gamepadconnected", gamepadListener);
@@ -140,6 +160,13 @@ function App() {
         >
           {gamepadConnected ? "Gamepad conectado" : "Conecte um gamepad."}
         </h1>
+        {vencedor && (
+          <Win
+            vencedor={vencedor}
+            open={openModalWin}
+            close={handleClose}
+          />
+        )}
 
         <div className="flex h-full w-full">
           <div className="bg-red-600 w-1/2 h-full justify-center items-center flex flex-col">
