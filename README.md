@@ -9,9 +9,9 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 - [x] Estutura de pontos
 - [x] Conexão com gamepad
-- [ ] Cronometro do Round
+- [x] Cronometro do Round
 - [ ] Faltas
-- [ ] Escolha do tempo
+- [x] Escolha do tempo
 
 ## 🎮 Gamepad Input
 

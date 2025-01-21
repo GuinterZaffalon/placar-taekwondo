@@ -65,10 +65,10 @@ function App() {
   };
 
   useEffect(() => {
-    if (vermelho > azul + 12) {
+    if (vermelho >= azul + 12) {
       setVencedor("vermelho");
      handleOpenWin();
-    } else if (azul > vermelho + 12) {
+    } else if (azul >= vermelho + 12) {
       setVencedor("azul");
       handleOpenWin();
     }
